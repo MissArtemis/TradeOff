@@ -143,3 +143,11 @@ def recommand_industry_offline():
     result_table = spark.createDataFrame(result)
     result_table.write.saveAsTable('industry.xgb_model_all' + time, mode='overwrite')
     print('Done!')
+
+
+def recommend_industry_online(updatetme:str):
+    spark = SparkSession.builder.enableHiveSupport().getOrCreate()
+    result_tb = spark.sql("select * from industry.xgb_model_all" + updatetme).toPandas()
+    result = result_tb.head(3)
+    return {'result': result.to_dict('records')}
+

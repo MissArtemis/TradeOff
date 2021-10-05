@@ -25,3 +25,5 @@ class Model_daily_reponse(BaseModel):
     y_now: str = "0"
 
 
+class Recommend_ind_request(BaseModel):
+    update_time: str = "20211005"
