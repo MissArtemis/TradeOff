@@ -26,4 +26,4 @@ class Model_daily_reponse(BaseModel):
 
 
 class Recommend_ind_request(BaseModel):
-    update_time: str = "20211005"
+    update_time: str

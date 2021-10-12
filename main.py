@@ -20,7 +20,7 @@ async def query(request: Request):
 async def load_schedule():
     global sched
     sched = BackgroundScheduler()
-    sched.add_job(recommand_industry_offline, 'cron', hour=16, minute=30)
+    sched.add_job(recommand_industry_offline, 'cron', hour=7, minute=40)
     logger.info('Start Offline Job')
     sched.start()
 

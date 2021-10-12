@@ -139,6 +139,7 @@ def recommand_industry_offline():
         result_list.append({'name': k, 'score': score})
     result = pd.DataFrame(result_list)
     result.sort_values('score', axis=0, ascending=False, inplace=True)
+    result.to_excel('./indu_result.xlsx')
     spark = SparkSession.builder.enableHiveSupport().getOrCreate()
     result_table = spark.createDataFrame(result)
     result_table.write.saveAsTable('industry.xgb_model_all' + time, mode='overwrite')
@@ -148,6 +149,7 @@ def recommand_industry_offline():
 def recommend_industry_online(updatetme:str):
     spark = SparkSession.builder.enableHiveSupport().getOrCreate()
     result_tb = spark.sql("select * from industry.xgb_model_all" + updatetme).toPandas()
-    result = result_tb.head(3)
+    result_tb.sort_values('score', axis=0, ascending=False, inplace=True)
+    result = result_tb
     return {'result': result.to_dict('records')}
 

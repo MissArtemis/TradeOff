@@ -17,9 +17,9 @@ def model_xgb_train(df):
     y = df['y'].copy()
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
     parameters = {
-        'n_estimators': [8, 9, 10],
+        'n_estimators': [7, 8, 9, 10, 11, 12],
         'learning_rate': [0.02, 0.01, 0.025],
-        'max_depth': [8, 9, 10],
+        'max_depth': [7, 8, 9, 10, 11, 12],
         'gamma': [0.02, 0.01, 0.025],
     }
     model = xgb.XGBClassifier(use_label_encoder=False, eval_metric='logloss').fit(X_train, y_train)
